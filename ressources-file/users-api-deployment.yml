@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: users-api-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: users-api
+  template:
+    metadata:
+      labels:
+        app: users-api
+    spec:
+      containers:
+      - name: users-api
+        image: samir1977/users-api:latest
+        env:
+          - name: AUTH_ADDRESS
+            valueFrom:
+              configMapKeyRef:
+                name: demo-api-env
+                key: AUTH_ADDRESS    
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080

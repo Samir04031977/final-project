@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+ name: demo-api-env
+data:
+  AUTH_ADDRESS: "auth-api-service.default"
+  TASKS_FOLDER: "tasks"
